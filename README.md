@@ -5,6 +5,7 @@ An intelligent AI copilot designed to streamline cloud operations and incident r
 ## 🎯 What Problem Does This Solve?
 
 In fast-paced production environments, engineers often struggle with:
+
 - Finding the right runbook during critical incidents
 - Remembering specific troubleshooting steps across multiple services
 - Maintaining consistency in incident response procedures
@@ -15,7 +16,9 @@ CloudOps Sentinel acts as an intelligent assistant that understands your questio
 ## ✨ Key Features
 
 ### Self-RAG Architecture
+
 Unlike traditional RAG systems, this implementation includes:
+
 - **Intelligent Retrieval Decision**: Determines whether external documents are needed or if the question can be answered directly
 - **Relevance Filtering**: Validates retrieved documents for relevance before using them
 - **Answer Verification**: Checks if the generated answer is properly supported by the source documents
@@ -23,6 +26,7 @@ Unlike traditional RAG systems, this implementation includes:
 - **Web Search Fallback**: Automatically searches the web when internal docs don't have the answer
 
 ### Production-Ready Features
+
 - **FastAPI Backend**: Modern async web framework with automatic API documentation
 - **LangGraph State Management**: Sophisticated workflow orchestration with conditional logic
 - **Vector Database Integration**: Uses Pinecone for efficient semantic search
@@ -34,7 +38,7 @@ Unlike traditional RAG systems, this implementation includes:
 
 The system uses a sophisticated multi-step workflow:
 
-```
+```ini
 User Question → Retrieval Decision → Retrieve Docs → Relevance Check 
                     ↓                                        ↓
             Generate Direct Answer              Filter & Build Context
@@ -117,21 +121,24 @@ Visit `http://localhost:8000` in your browser to access the interface.
 ## 📚 Sample Use Cases
 
 **Scenario 1: API Troubleshooting**
-```
+
+```yaml
 User: "The checkout API is returning 500 errors, what should I check?"
 System: [Retrieves checkout-api-runbook.md]
 Answer: "Start by checking these key areas: 1) Database connections..."
 ```
 
 **Scenario 2: Deployment Issues**
-```
+
+```md
 User: "Need to rollback the payment service deployment"
 System: [Retrieves deployment-rollback-sop.md]
 Answer: "Follow these steps for a safe rollback: 1) Access the deployment dashboard..."
 ```
 
 **Scenario 3: Performance Investigation**
-```
+
+```ini
 User: "Payment service CPU is spiking to 90%"
 System: [Retrieves payments-high-cpu-runbook.md]
 Answer: "Here's the systematic approach to diagnose high CPU..."
@@ -140,12 +147,14 @@ Answer: "Here's the systematic approach to diagnose high CPU..."
 ## 🔍 How It Works
 
 ### Document Ingestion
+
 1. Documents (PDF, MD, DOCX) are uploaded via the web interface or CLI
 2. Text is extracted and split into semantic chunks
 3. Chunks are embedded using OpenAI's embedding model
 4. Vectors are stored in Pinecone with metadata
 
 ### Query Processing
+
 1. User submits a question through the web interface
 2. LLM decides if retrieval is needed or can answer directly
 3. If retrieval is needed:
@@ -153,6 +162,7 @@ Answer: "Here's the systematic approach to diagnose high CPU..."
    - Relevant documents are retrieved from Pinecone
    - LLM filters for relevance
    - Context is built from relevant chunks
+
 4. Answer is generated based on context
 5. System verifies the answer is supported by sources
 6. Usefulness is evaluated
@@ -160,7 +170,7 @@ Answer: "Here's the systematic approach to diagnose high CPU..."
 
 ## 📊 Project Structure
 
-```
+```ini
 CloudOps-Sentinel-Copilot/
 ├── app.py                      # FastAPI application entry point
 ├── data_ingestion.py          # CLI tool for batch document ingestion
@@ -224,21 +234,10 @@ Interactive API documentation is available at `http://localhost:8000/docs`
 ## 🚧 Future Enhancements
 
 Some ideas for extending this project:
+
 - [ ] Multi-tenant support with namespace isolation
 - [ ] Integration with Slack/Teams for incident alerts
 - [ ] Advanced analytics dashboard
 - [ ] Support for more document formats (HTML, JSON schemas)
 - [ ] Fine-tuned embeddings on domain-specific content
 - [ ] A/B testing different RAG strategies
-
-## 🤝 Contributing
-
-This project was built to demonstrate practical AI engineering skills. Feel free to fork and adapt it for your own use cases.
-
-## 📄 License
-
-MIT License - See LICENSE file for details
-
----
-
-**Built with modern AI engineering practices to solve real-world DevOps challenges.**
